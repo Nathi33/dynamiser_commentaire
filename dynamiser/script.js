@@ -23,3 +23,22 @@ function createComment() {
   let body = document.querySelector("#comment-list");
   body.appendChild(newComment);
 }
+
+//Ecoute de l'évènement du bouton envoyer du formulaire
+form.addEventListener("submit", (event) => {
+  //Permet  de ne pas recharger la page à la validation
+  event.preventDefault();
+
+  //Vérification que les champs ne soient pas vides
+  if (firstName.value === "" || lastName.value === "" || message.value === "") {
+    errorMessage.style.display = "block";
+  } else {
+    errorMessage.style.display = "none";
+    createComment();
+  }
+
+  //Suppression du contenu des champs du formulaire une fois le nouveau commentaire affiché dans la liste
+  firstName.value = "";
+  lastName.value = "";
+  message.value = "";
+});
